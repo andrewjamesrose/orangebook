@@ -1,0 +1,255 @@
+<html>
+    <head>
+<!-- Loads local object references -->  
+
+        <script type='text/javascript' src = 'DistributionObjects/objects.js'></script>
+
+
+<!-- Loads JQuery UI references -->        
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+
+
+<!-- Loads MathJax references -->  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script>
+  <script type="text/javascript" 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+  </script>     
+
+
+<!-- Load Google Charts API --> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>      
+
+
+<script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+  
+  
+        google.charts.setOnLoadCallback(drawChart);
+          //the drawchart function takes no arguments
+
+    var global_p = 0.5; //initial value TBC global_param1
+    var global_n = 20; //initial value TBC global_param2
+    //var global_param3 = 5.0;
+
+    var options = {
+            title: 'Test of Area Graph Drawing',
+            legend: {position: 'right', maxLines: 4 },
+            hAxis: {title: 'x',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0.0, maxValue: 1.0},
+            chartArea:{top: 20},
+           
+            series: {
+              0: {targetAxisIndex: 0},
+              1: {targetAxisIndex: 1} 
+            }
+          }
+
+
+    function drawChart(){
+          //removed var data definition from here
+          data = new google.visualization.DataTable();
+          data.addColumn('number', 'x');
+          data.addColumn('number','f(x)');
+          data.addColumn('number', 'F(x)');
+          data.addRows(301);
+          var i;
+          var x;
+  
+          
+          for (i = 0; i < 301; i++){
+            x = i/300;
+            data.setCell(i,0,x);
+            data.setCell(i,1, x);
+            data.setCell(i,2, 1-x);
+            //function here which calls fx and Fx from global variables
+  
+          }
+  
+          chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+
+    function reset_Page(){
+        //reset global parameters to defaults 
+        //reset slider positions
+        //updateEX();
+        //updateVX();
+        //updateGraph();
+
+    }
+
+    function updateEX(){
+        return global_p * global_n;
+    }
+    
+    function updateVX(){
+        //return global_p * global_n *(1-global_p);
+        alpha = global_n;
+        beta = global_p;
+        return alpha * beta;
+    }
+
+</script>
+         
+
+<script>
+        
+    $( function() {
+        $( "#slider_param1" ).slider({
+        slide: function (event, ui){
+            document.getElementById("data_param1").innerHTML = ui.value;
+        }
+        });
+
+        $( "#slider_param2" ).slider({
+        slide: function (event, ui){
+            document.getElementById("data_param2").innerHTML = ui.value;
+        }
+        });
+        $( "#slider_param3" ).slider({
+        slide: function (event, ui){
+            document.getElementById("data_param3").innerHTML = ui.value;
+            document.getElementById("value_EX").innerHTML = updateEX();
+            document.getElementById("value_VX").innerHTML = updateVX();
+
+            }
+        });
+    } );
+
+    //https://www.tutorialspoint.com/jqueryui/jqueryui_slider.htm
+    //https://jqueryui.com/slider/
+    
+
+
+
+</script>
+
+</head>
+
+
+
+    <div id = "title_block" style="text-align: center; font-size:150%">
+        The Name of the Function Goes Here
+    </div>
+            
+
+    <div id = "everything_else" style="width: 40%; float:left">
+        <div style="background-color: rgb(144, 243, 236)">
+            Parameters: <span id="data_parameters"></span>
+            <br>
+            <br>
+            Contraints: <span id="data_constraints"></span>
+            <br>
+            <br>
+            <br>
+        </div>
+
+        <div style="background-color: rgb(255, 255, 255)"> 
+            $n = $ <span id ="data_param1" ></span><br><br>
+            <div id="slider_param1", style="width: 200px;"></div>
+            <br>            
+        </div>
+    
+        <div style="background-color: rgb(144, 243, 236)"> 
+            $p = $ <span id ="data_param2" ></span><br><br>
+            <div id="slider_param2", style="width: 200px;"></div>            
+            <br>
+        </div>
+    
+        <div style="background-color: rgb(255, 255, 255)"> 
+            <span id ="data_param3" ></span>
+            <div id="slider_param3", style="width: 200px;"></div>            
+            <br>   
+        </div>
+  
+        <div style="background-color: rgb(255, 255, 255)"> 
+            $f(x) = \ $<span id ="data_PDF" ></span>
+            <br>
+            <br>
+        </div>
+
+        <div style="background-color: rgb(144, 243, 236)">
+            $F(x) = \ $<span id ="data_CDF" ></span>
+            <br>
+            <br>
+        </div>
+
+        <div style="background-color: rgb(255, 255, 255)">
+            $\mathbb{E}[X] = \ $<span id ="data_EX" ></span>
+            <span id = "value_EX">$=\ $expectation value will go here</span>
+            <br>
+            <br>
+        </div>
+
+        <div style="background-color: rgb(144, 243, 236)"> 
+            $\mathbb{V}[X] = \ $<span id ="data_VX" ></span>
+            <span id = "value_VX">$=\ $variance value will go here</span>
+            <br>
+            <br>
+        </div>
+
+        <div style="background-color: rgb(255, 255, 255)"> 
+                More info: <a id ="data_URL" >Wikipedia</a>
+        </div>
+
+
+    </div>
+   
+    <div id="chart_div" style="width: 60%; height: 800px; float:right; background-color: #778899">
+
+
+            
+    
+    </div>
+
+
+
+    <script>
+    
+        var testObject = new normalDist(5,7);   // A new Object object
+
+
+        //var temp = "";
+
+        //for(var propertyName in testObject) {
+        //    temp = temp + propertyName + " = "+ testObject[propertyName] + "<br><br>";
+        //}
+
+        //document.getElementById("demo").innerHTML = temp;
+
+        document.getElementById("title_block").innerHTML = testObject.name;
+
+        document.getElementById("data_parameters").innerHTML = testObject.paramsString;
+        
+        document.getElementById("data_constraints").innerHTML = testObject.paramConstraints;
+
+        document.getElementById("data_PDF").innerHTML = testObject.pdfString;
+
+        document.getElementById("data_CDF").innerHTML = testObject.cdfString;
+
+        document.getElementById("data_EX").innerHTML = testObject.expectationString;
+
+        document.getElementById("data_VX").innerHTML = testObject.varianceString;
+
+        document.getElementById("data_param1").innerHTML = "Parameter 1 current value";
+
+        document.getElementById("data_param2").innerHTML = "Parameter 2 current value";
+
+        document.getElementById("data_param3").innerHTML = "Parameter 3 current value";
+
+        document.getElementById("data_URL").href = testObject.URL;
+
+
+        
+    </script>
+
+
+
+</html>
