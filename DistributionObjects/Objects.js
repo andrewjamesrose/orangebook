@@ -209,6 +209,32 @@ function normalDist(mu, sigma) {
 }
 
 //###Index009
+function exponentialDist(lambda) {
+    this.name = "Exponential Distribution";
+    this.paramCount = 1;
+    this.lambda = eval(lambda);
+    this.continuity = "Continuous";
+    this.paramConstraints = "$\\lambda > 0$";
+    this.paramsString = "$\\lambda$";
+    this.pdfValue = localPDF;
+    this.pdfString = "$\\lambda e^{-\\lambda x}$";
+    this.cdfValue = localCDF;
+    this.cdfString = "$1-e^{-\\lambda x}$";       
+    this.expectationValue = "Expectation Value Function";
+    this.expectationString = "$\\frac{1}{\\lambda}$";
+    this.varianceValue = "Variance value function";
+    this.varianceString = "$\\frac{1}{\\lambda}$";
+    this.URL = "https://en.wikipedia.org/wiki/Exponential_distribution";
+    
+    function localPDF(x) {
+        return "PDF function " + x
+    }
+
+    function localCDF(x) {
+        return "CDF function " + x
+    }
+    
+}
 //###Index010
 //###Index011
 //###Index012
