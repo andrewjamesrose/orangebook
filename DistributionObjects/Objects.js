@@ -6,9 +6,9 @@
 function binomialDist(n, p) {
     this.name = "Binomial Distribution";
     this.paramCount = 2;
-    this.param_1 = "$n$"
-    this.param_2 = "$p$"
-    //this.param_3 = "" 
+    this.param_1 = "$n$";
+    this.param_2 = "$p$";
+    //this.param_3 = ""; 
     this.p = eval(p);
     this.n = eval(n);
     this.continuity = "Discrete";
@@ -38,6 +38,9 @@ function binomialDist(n, p) {
 function bernouilliDist(p) {
     this.name = "Bernouilli Distribution";
     this.paramCount = 1;
+    this.param_1 = "$p$";
+    //this.param_2 = "";
+    //this.param_3 = ""; 
     this.p = eval(p);
     this.continuity = "Discrete";
     this.paramConstraints = "$n \\in \\mathbb{N} \\\\ 0< p < 1 \\\\ q=1-p$";
@@ -66,6 +69,9 @@ function bernouilliDist(p) {
 function poissonDist(lambda) {
     this.name = "Poisson Distribution";
     this.paramCount = 1;
+    this.param_1 = "$\\lambda$";
+    //this.param_2 = "";
+    //this.param_3 = "";
     this.lambda = eval(lambda);
     this.continuity = "Discrete";
     this.paramConstraints = "$\\lambda>0$";
@@ -94,6 +100,9 @@ function poissonDist(lambda) {
 function negBinIDist(k,p) {
     this.name = "Negative Binomial Type I";
     this.paramCount = 2;
+    this.param_1 = "$k$";
+    this.param_2 = "$p$";
+    //this.param_3 = "";
     this.k = eval(k);
     this.p = eval(p);
     this.continuity = "Discrete";
@@ -123,6 +132,9 @@ function negBinIDist(k,p) {
 function negBinIIDist(k,p) {
     this.name = "Negative Binomial Type II";
     this.paramCount = 2;
+    this.param_1 = "$k$";
+    this.param_2 = "$p$";
+    //this.param_3 = "";
     this.k = eval(k);
     this.p = eval(p);
     this.continuity = "Discrete";
@@ -155,6 +167,9 @@ function negBinIIDist(k,p) {
 function uniformDiscreteDist(a,b,h) {
     this.name = "Uniform Discrete";
     this.paramCount = 3;
+    this.param_1 = "$a$";
+    this.param_2 = "$b$";
+    this.param_3 = "$h$";
     this.a = eval(a);
     this.b = eval(b);
     this.h = eval(h);
@@ -185,6 +200,9 @@ function uniformDiscreteDist(a,b,h) {
 function normalDist(mu, sigma) {
     this.name = "Normal Distribution";
     this.paramCount = 2;
+    this.param_1 = "$\\mu$";
+    this.param_2 = "$\\sigma$";
+    //this.param_3 = "$$";
     this.mu = eval(mu);
     this.sigma = eval(sigma);
     this.continuity = "Continuous";
@@ -213,6 +231,9 @@ function normalDist(mu, sigma) {
 //###Index009
 function exponentialDist(lambda) {
     this.name = "Exponential Distribution";
+    this.param_1 = "$\\lambda$";
+    //this.param_2 = "$b$";
+    //this.param_3 = "$h$";
     this.paramCount = 1;
     this.lambda = eval(lambda);
     this.continuity = "Continuous";
@@ -246,6 +267,9 @@ function exponentialDist(lambda) {
 function logNormalDist(mu, sigma) {
     this.name = "Log-normal Distribution";
     this.paramCount = 2;
+    this.param_1 = "$\\mu$";
+    this.param_2 = "$\\lambda$";
+    //this.param_3 = "$h$";
     this.mu = eval(mu);
     this.sigma = eval(sigma);
     this.continuity = "Continuous";
