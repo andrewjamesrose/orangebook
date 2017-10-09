@@ -6,11 +6,13 @@
 function binomialDist(n, p) {
     this.name = "Binomial Distribution";
     this.paramCount = 2;
+    this.param_1 = "$n$"
+    this.param_2 = "$p$"
+    //this.param_3 = "" 
     this.p = eval(p);
     this.n = eval(n);
     this.continuity = "Discrete";
     this.paramConstraints = "$n \\in \\mathbb{N} \\\\ 0< p < q \\\\ q=1-p$";
-    //,  0<p<1, q=1-p $";
     this.paramsString = "$n,\\ p$";
     this.pdfValue = localPDF;
     this.pdfString = "$\\left(\\begin{array}{c}n\\\\ x\\end{array}\\right)p^{x}q^{n-x}$";
