@@ -104,18 +104,18 @@
     $( function() {
         $( "#slider_param1" ).slider({
         slide: function (event, ui){
-            document.getElementById("data_param1").innerHTML = ui.value;
+            document.getElementById("value_param1").innerHTML = ui.value;
         }
         });
 
         $( "#slider_param2" ).slider({
         slide: function (event, ui){
-            document.getElementById("data_param2").innerHTML = ui.value;
+            document.getElementById("value_param2").innerHTML = ui.value;
         }
         });
         $( "#slider_param3" ).slider({
         slide: function (event, ui){
-            document.getElementById("data_param3").innerHTML = ui.value;
+            document.getElementById("value_param3").innerHTML = ui.value;
             document.getElementById("value_EX").innerHTML = updateEX();
             document.getElementById("value_VX").innerHTML = updateVX();
 
@@ -152,19 +152,25 @@
         </div>
 
         <div style="background-color: rgb(255, 255, 255)"> 
-            $n = $ <span id ="data_param1" ></span><br><br>
+            <span id ="data_param1" ></span>
+            $ = $ 
+            <span id ="value_param1" ></span><br><br>
             <div id="slider_param1", style="width: 200px;"></div>
             <br>            
         </div>
     
         <div style="background-color: rgb(144, 243, 236)"> 
-            $p = $ <span id ="data_param2" ></span><br><br>
+            <span id ="data_param2" ></span>
+            $ = $ 
+            <span id ="value_param2" ></span><br><br>
             <div id="slider_param2", style="width: 200px;"></div>            
             <br>
         </div>
     
         <div style="background-color: rgb(255, 255, 255)"> 
             <span id ="data_param3" ></span>
+            $ = $
+            <span id ="value_param3" ></span><br><br>
             <div id="slider_param3", style="width: 200px;"></div>            
             <br>   
         </div>
@@ -213,7 +219,7 @@
 
     <script>
     
-        var testObject = new exponentialDist(5);   // A new Object object
+        var testObject = new binomialDist(5,7);   // A new Object object
 
 
         //var temp = "";
@@ -238,11 +244,17 @@
 
         document.getElementById("data_VX").innerHTML = testObject.varianceString;
 
-        document.getElementById("data_param1").innerHTML = "Parameter 1 current value";
+        document.getElementById("data_param1").innerHTML = testObject.param_1;
 
-        document.getElementById("data_param2").innerHTML = "Parameter 2 current value";
+        document.getElementById("value_param1").innerHTML = "Parameter 1 initialised value";
 
-        document.getElementById("data_param3").innerHTML = "Parameter 3 current value";
+        document.getElementById("data_param2").innerHTML = testObject.param_2;
+
+        document.getElementById("value_param2").innerHTML = "Parameter 2 initialised value";
+       
+        document.getElementById("data_param3").innerHTML = testObject.param_3;  
+        
+        document.getElementById("value_param3").innerHTML = "Parameter 3 initialised value";
 
         document.getElementById("data_URL").href = testObject.URL;
 
